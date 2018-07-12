@@ -1,0 +1,396 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 65616 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:390), pid=3904, tid=0x0000000000000adc
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_121-b13) (build 1.8.0_121-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.121-b13 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000001960b800):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=2780, stack(0x0000000018d70000,0x0000000018e70000)]
+
+Stack: [0x0000000018d70000,0x0000000018e70000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+Current CompileTask:
+C2: 223191 2900   !   4       org.mozilla.javascript.JavaMembers::discoverAccessibleMethods (401 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000001a4d7800 JavaThread "Thread-1" daemon [_thread_in_native, id=1596, stack(0x0000000019ef0000,0x0000000019ff0000)]
+  0x0000000019732800 JavaThread "Thread-0" daemon [_thread_in_native, id=3140, stack(0x0000000000030000,0x0000000000130000)]
+  0x000000001968c000 JavaThread "Service Thread" daemon [_thread_blocked, id=2372, stack(0x0000000018f70000,0x0000000019070000)]
+  0x0000000019681000 JavaThread "C1 CompilerThread1" daemon [_thread_blocked, id=1136, stack(0x0000000018e70000,0x0000000018f70000)]
+=>0x000000001960b800 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=2780, stack(0x0000000018d70000,0x0000000018e70000)]
+  0x0000000017db7800 JavaThread "Attach Listener" daemon [_thread_blocked, id=5108, stack(0x0000000018c70000,0x0000000018d70000)]
+  0x0000000017db6000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2524, stack(0x0000000018b70000,0x0000000018c70000)]
+  0x0000000017d9e800 JavaThread "Finalizer" daemon [_thread_blocked, id=1564, stack(0x00000000189b0000,0x0000000018ab0000)]
+  0x0000000017d57800 JavaThread "Reference Handler" daemon [_thread_blocked, id=708, stack(0x00000000188b0000,0x00000000189b0000)]
+  0x00000000153ff000 JavaThread "main" [_thread_in_native, id=3568, stack(0x0000000015960000,0x0000000015a60000)]
+
+Other Threads:
+  0x0000000017d4d800 VMThread [stack: 0x00000000187b0000,0x00000000188b0000] [id=3488]
+  0x0000000019732000 WatcherThread [stack: 0x0000000019070000,0x0000000019170000] [id=2852]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 140288K, used 36706K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 28% used [0x00000000f5580000,0x00000000f79589f0,0x00000000fd200000)
+  from space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+  to   space 12800K, 0% used [0x00000000fdf00000,0x00000000fdf00000,0x00000000feb80000)
+ ParOldGen       total 38912K, used 5792K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e05a8010,0x00000000e2600000)
+ Metaspace       used 28147K, capacity 29035K, committed 29232K, reserved 1075200K
+  class space    used 3308K, capacity 3499K, committed 3632K, reserved 1048576K
+
+Card table byte_map: [0x0000000016010000,0x0000000016120000] byte_map_base: 0x0000000015910000
+
+Marking Bits: (ParMarkBitMap*) 0x00000000685fb6d0
+ Begin Bits: [0x0000000016320000, 0x0000000016b20000)
+ End Bits:   [0x0000000016b20000, 0x0000000017320000)
+
+Polling page: 0x0000000015530000
+
+CodeCache: size=245760Kb used=11095Kb max_used=11095Kb free=234664Kb
+ bounds [0x000000001e300000, 0x000000001ede0000, 0x000000002d300000]
+ total_blobs=3347 nmethods=2904 adapters=356
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 223.024 Thread 0x0000000019681000 2906   !   3       loci.common.Location::<init> (105 bytes)
+Event: 223.025 Thread 0x0000000019681000 nmethod 2906 0x000000001edd9a10 code [0x000000001edd9c80, 0x000000001edda898]
+Event: 223.025 Thread 0x0000000019681000 2907   !   3       loci.common.NIOFileHandle::readShort (48 bytes)
+Event: 223.025 Thread 0x0000000019681000 nmethod 2907 0x000000001edd38d0 code [0x000000001edd3a60, 0x000000001edd3e58]
+Event: 223.025 Thread 0x0000000019681000 2908       3       java.nio.HeapByteBuffer::getShort (18 bytes)
+Event: 223.025 Thread 0x0000000019681000 nmethod 2908 0x000000001eddaf10 code [0x000000001eddb0e0, 0x000000001eddb848]
+Event: 223.025 Thread 0x0000000019681000 2909       1       loci.formats.tiff.IFDType::getBytesPerElement (5 bytes)
+Event: 223.025 Thread 0x0000000019681000 nmethod 2909 0x000000001edd3610 code [0x000000001edd3760, 0x000000001edd3870]
+Event: 223.025 Thread 0x0000000019681000 2910       1       loci.formats.tiff.TiffIFDEntry::getType (5 bytes)
+Event: 223.025 Thread 0x0000000019681000 nmethod 2910 0x000000001edd3290 code [0x000000001edd33e0, 0x000000001edd34f0]
+
+GC Heap History (10 events):
+Event: 51.405 GC heap before
+{Heap before GC invocations=11 (full 2):
+ PSYoungGen      total 131072K, used 3065K [0x00000000f5580000, 0x00000000fea80000, 0x0000000100000000)
+  eden space 128000K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd280000)
+  from space 3072K, 99% used [0x00000000fd280000,0x00000000fd57e430,0x00000000fd580000)
+  to   space 12288K, 0% used [0x00000000fde80000,0x00000000fde80000,0x00000000fea80000)
+ ParOldGen       total 38912K, used 11236K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 28% used [0x00000000e0000000,0x00000000e0af9288,0x00000000e2600000)
+ Metaspace       used 27407K, capacity 27963K, committed 28336K, reserved 1075200K
+  class space    used 3254K, capacity 3386K, committed 3504K, reserved 1048576K
+Event: 51.457 GC heap after
+Heap after GC invocations=11 (full 2):
+ PSYoungGen      total 131072K, used 0K [0x00000000f5580000, 0x00000000fea80000, 0x0000000100000000)
+  eden space 128000K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd280000)
+  from space 3072K, 0% used [0x00000000fd280000,0x00000000fd280000,0x00000000fd580000)
+  to   space 12288K, 0% used [0x00000000fde80000,0x00000000fde80000,0x00000000fea80000)
+ ParOldGen       total 38912K, used 6087K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 15% used [0x00000000e0000000,0x00000000e05f1e98,0x00000000e2600000)
+ Metaspace       used 27311K, capacity 27843K, committed 28336K, reserved 1075200K
+  class space    used 3227K, capacity 3354K, committed 3504K, reserved 1048576K
+}
+Event: 51.743 GC heap before
+{Heap before GC invocations=12 (full 2):
+ PSYoungGen      total 131072K, used 38561K [0x00000000f5580000, 0x00000000fea80000, 0x0000000100000000)
+  eden space 128000K, 30% used [0x00000000f5580000,0x00000000f7b284e8,0x00000000fd280000)
+  from space 3072K, 0% used [0x00000000fd280000,0x00000000fd280000,0x00000000fd580000)
+  to   space 12288K, 0% used [0x00000000fde80000,0x00000000fde80000,0x00000000fea80000)
+ ParOldGen       total 38912K, used 6087K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 15% used [0x00000000e0000000,0x00000000e05f1e98,0x00000000e2600000)
+ Metaspace       used 27370K, capacity 27889K, committed 28336K, reserved 1075200K
+  class space    used 3237K, capacity 3366K, committed 3504K, reserved 1048576K
+Event: 51.744 GC heap after
+Heap after GC invocations=12 (full 2):
+ PSYoungGen      total 139776K, used 154K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12288K, 1% used [0x00000000fde80000,0x00000000fdea6bc8,0x00000000fea80000)
+  to   space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+ ParOldGen       total 38912K, used 6095K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 15% used [0x00000000e0000000,0x00000000e05f3e98,0x00000000e2600000)
+ Metaspace       used 27370K, capacity 27889K, committed 28336K, reserved 1075200K
+  class space    used 3237K, capacity 3366K, committed 3504K, reserved 1048576K
+}
+Event: 51.744 GC heap before
+{Heap before GC invocations=13 (full 3):
+ PSYoungGen      total 139776K, used 154K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12288K, 1% used [0x00000000fde80000,0x00000000fdea6bc8,0x00000000fea80000)
+  to   space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+ ParOldGen       total 38912K, used 6095K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 15% used [0x00000000e0000000,0x00000000e05f3e98,0x00000000e2600000)
+ Metaspace       used 27370K, capacity 27889K, committed 28336K, reserved 1075200K
+  class space    used 3237K, capacity 3366K, committed 3504K, reserved 1048576K
+Event: 51.805 GC heap after
+Heap after GC invocations=13 (full 3):
+ PSYoungGen      total 139776K, used 0K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12288K, 0% used [0x00000000fde80000,0x00000000fde80000,0x00000000fea80000)
+  to   space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+ ParOldGen       total 38912K, used 5549K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e056b7e8,0x00000000e2600000)
+ Metaspace       used 27341K, capacity 27855K, committed 28336K, reserved 1075200K
+  class space    used 3229K, capacity 3356K, committed 3504K, reserved 1048576K
+}
+Event: 221.912 GC heap before
+{Heap before GC invocations=14 (full 3):
+ PSYoungGen      total 139776K, used 118767K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 93% used [0x00000000f5580000,0x00000000fc97bf50,0x00000000fd200000)
+  from space 12288K, 0% used [0x00000000fde80000,0x00000000fde80000,0x00000000fea80000)
+  to   space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+ ParOldGen       total 38912K, used 5549K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e056b7e8,0x00000000e2600000)
+ Metaspace       used 28151K, capacity 29057K, committed 29232K, reserved 1075200K
+  class space    used 3327K, capacity 3521K, committed 3632K, reserved 1048576K
+Event: 221.987 GC heap after
+Heap after GC invocations=14 (full 3):
+ PSYoungGen      total 140288K, used 447K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12800K, 3% used [0x00000000fd200000,0x00000000fd26fc10,0x00000000fde80000)
+  to   space 12800K, 0% used [0x00000000fdf00000,0x00000000fdf00000,0x00000000feb80000)
+ ParOldGen       total 38912K, used 5557K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e056d7e8,0x00000000e2600000)
+ Metaspace       used 28151K, capacity 29057K, committed 29232K, reserved 1075200K
+  class space    used 3327K, capacity 3521K, committed 3632K, reserved 1048576K
+}
+Event: 221.987 GC heap before
+{Heap before GC invocations=15 (full 4):
+ PSYoungGen      total 140288K, used 447K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12800K, 3% used [0x00000000fd200000,0x00000000fd26fc10,0x00000000fde80000)
+  to   space 12800K, 0% used [0x00000000fdf00000,0x00000000fdf00000,0x00000000feb80000)
+ ParOldGen       total 38912K, used 5557K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e056d7e8,0x00000000e2600000)
+ Metaspace       used 28151K, capacity 29057K, committed 29232K, reserved 1075200K
+  class space    used 3327K, capacity 3521K, committed 3632K, reserved 1048576K
+Event: 222.254 GC heap after
+Heap after GC invocations=15 (full 4):
+ PSYoungGen      total 140288K, used 0K [0x00000000f5580000, 0x00000000feb80000, 0x0000000100000000)
+  eden space 127488K, 0% used [0x00000000f5580000,0x00000000f5580000,0x00000000fd200000)
+  from space 12800K, 0% used [0x00000000fd200000,0x00000000fd200000,0x00000000fde80000)
+  to   space 12800K, 0% used [0x00000000fdf00000,0x00000000fdf00000,0x00000000feb80000)
+ ParOldGen       total 38912K, used 5792K [0x00000000e0000000, 0x00000000e2600000, 0x00000000f5580000)
+  object space 38912K, 14% used [0x00000000e0000000,0x00000000e05a8010,0x00000000e2600000)
+ Metaspace       used 28076K, capacity 28961K, committed 29232K, reserved 1075200K
+  class space    used 3307K, capacity 3497K, committed 3632K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 31.171 Thread 0x000000001a4d7800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000001e9da730 method=com.sun.org.apache.xalan.internal.xsltc.compiler.Parser.getQName(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/sun/org/apache/xalan/internal/xsltc/compiler/QNa
+Event: 31.618 Thread 0x000000001a4d7800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000001eab9104 method=loci.formats.tiff.TiffSaver.writeImage([BLloci/formats/tiff/IFD;IIIIIIZLjava/lang/Integer;Z)V @ 321
+Event: 34.575 Thread 0x000000001a4d7800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000001eac968c method=loci.formats.tiff.TiffSaver.writeImage([BLloci/formats/tiff/IFD;IIIIIIZLjava/lang/Integer;Z)V @ 321
+Event: 43.581 Thread 0x000000001a4d7800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000001eab5b9c method=loci.formats.tiff.TiffSaver.writeImage([BLloci/formats/tiff/IFD;IIIIIIZLjava/lang/Integer;Z)V @ 321
+Event: 51.986 Thread 0x000000001a4d7800 Uncommon trap: reason=predicate action=maybe_recompile pc=0x000000001ecc4b04 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 49
+Event: 51.987 Thread 0x000000001a4d7800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x000000001ec8b08c method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 51.989 Thread 0x000000001a4d7800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x000000001ec8b08c method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 51.993 Thread 0x000000001a4d7800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x000000001ecc9ea8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 51.993 Thread 0x000000001a4d7800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x000000001ec8b08c method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 51.995 Thread 0x000000001a4d7800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x000000001ecc9ea8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+
+Internal exceptions (10 events):
+Event: 4.310 Thread 0x0000000019732800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f5ebc2b8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 4.310 Thread 0x0000000019732800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f5ebf1e8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 4.316 Thread 0x0000000019732800 Exception <a 'java/lang/ClassNotFoundException': ch/qos/logback/core/pattern/PatternLayoutEncoderBaseCustomizer> (0x00000000f5ecdf18) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\classfile\systemDictionary.c
+Event: 4.317 Thread 0x0000000019732800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f5ed11f0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 4.317 Thread 0x0000000019732800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f5ed2460) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 4.319 Thread 0x0000000019732800 Exception <a 'java/lang/ClassNotFoundException': ch/qos/logback/classic/encoder/PatternLayoutEncoderCustomizer> (0x00000000f5ee4328) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\classfile\systemDictionary.cp
+Event: 4.321 Thread 0x0000000019732800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000f5ee76a8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u121\8372\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 30.962 Thread 0x000000001a4d7800 Implicit null exception at 0x000000001e42a1f6 to 0x000000001e42a69d
+Event: 31.028 Thread 0x000000001a4d7800 Implicit null exception at 0x000000001e5cca4c to 0x000000001e5ccbf9
+Event: 31.171 Thread 0x000000001a4d7800 Implicit null exception at 0x000000001e9d7ffe to 0x000000001e9da70d
+
+Events (10 events):
+Event: 222.964 loading class com
+Event: 222.964 loading class com done
+Event: 222.964 loading class edu
+Event: 222.964 loading class edu done
+Event: 222.964 loading class net
+Event: 222.964 loading class net done
+Event: 222.978 Thread 0x000000001a4d7800 DEOPT PACKING pc=0x000000001e6858fd sp=0x0000000019feb880
+Event: 222.978 Thread 0x000000001a4d7800 DEOPT UNPACKING pc=0x000000001e3471bf sp=0x0000000019feb668 mode 0
+Event: 222.991 Thread 0x000000001a4d7800 DEOPT PACKING pc=0x000000001e6858fd sp=0x0000000019feb880
+Event: 222.991 Thread 0x000000001a4d7800 DEOPT UNPACKING pc=0x000000001e3471bf sp=0x0000000019feb668 mode 0
+
+
+Dynamic libraries:
+0x0000000140000000 - 0x000000014001c000 	C:\Program Files\CellProfiler\CellProfiler.exe
+0x0000000076f10000 - 0x00000000770ba000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000076cf0000 - 0x0000000076e0f000 	C:\Windows\system32\kernel32.dll
+0x000007fefce20000 - 0x000007fefce8a000 	C:\Windows\system32\KERNELBASE.dll
+0x00000000738b0000 - 0x0000000073953000 	C:\Windows\WinSxS\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_08e61857a83bc251\MSVCR90.dll
+0x000000001e000000 - 0x000000001e2f3000 	C:\Program Files\CellProfiler\PYTHON27.DLL
+0x0000000076e10000 - 0x0000000076f0a000 	C:\Windows\system32\USER32.dll
+0x000007fefd7b0000 - 0x000007fefd817000 	C:\Windows\system32\GDI32.dll
+0x000007fefef30000 - 0x000007fefef3e000 	C:\Windows\system32\LPK.dll
+0x000007fefecc0000 - 0x000007fefed8a000 	C:\Windows\system32\USP10.dll
+0x000007fefec20000 - 0x000007fefecbf000 	C:\Windows\system32\msvcrt.dll
+0x000007fefd4d0000 - 0x000007fefd5ab000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefd820000 - 0x000007fefd83f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fefef40000 - 0x000007feff06d000 	C:\Windows\system32\RPCRT4.dll
+0x000007fefd840000 - 0x000007fefe5c9000 	C:\Windows\system32\SHELL32.dll
+0x000007fefeb00000 - 0x000007fefeb71000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fefe5d0000 - 0x000007fefe5fe000 	C:\Windows\system32\IMM32.DLL
+0x000007feff110000 - 0x000007feff219000 	C:\Windows\system32\MSCTF.dll
+0x0000000180000000 - 0x000000018000c000 	C:\Program Files\CellProfiler\h5py._errors.pyd
+0x0000000002130000 - 0x000000000235f000 	C:\Program Files\CellProfiler\hdf5.dll
+0x0000000002360000 - 0x0000000002378000 	C:\Program Files\CellProfiler\zlib.dll
+0x0000000002390000 - 0x00000000023a8000 	C:\Program Files\CellProfiler\szip.dll
+0x00000000023c0000 - 0x00000000023cf000 	C:\Program Files\CellProfiler\h5py._conv.pyd
+0x00000000023d0000 - 0x00000000023de000 	C:\Program Files\CellProfiler\h5py.h5r.pyd
+0x00000000023e0000 - 0x00000000023f5000 	C:\Program Files\CellProfiler\h5py._objects.pyd
+0x0000000002400000 - 0x0000000002421000 	C:\Program Files\CellProfiler\h5py.defs.pyd
+0x0000000002430000 - 0x000000000244e000 	C:\Program Files\CellProfiler\hdf5_hl.dll
+0x0000000002460000 - 0x000000000249e000 	C:\Program Files\CellProfiler\h5py.h5t.pyd
+0x00000000024a0000 - 0x000000000260e000 	C:\Program Files\CellProfiler\numpy.core.multiarray.pyd
+0x0000000002610000 - 0x0000000002686000 	C:\Program Files\CellProfiler\numpy.core.umath.pyd
+0x0000000002a90000 - 0x0000000003689000 	C:\Program Files\CellProfiler\numpy.core._dotblas.pyd
+0x000007feefe60000 - 0x000007feeff9e000 	C:\Program Files\CellProfiler\libiomp5md.dll
+0x0000000003690000 - 0x00000000036be000 	C:\Program Files\CellProfiler\numpy.core.scalarmath.pyd
+0x00000000037d0000 - 0x0000000003954000 	C:\Program Files\CellProfiler\_hashlib.pyd
+0x000007fefc3f0000 - 0x000007fefc408000 	C:\Windows\system32\CRYPTSP.dll
+0x000007fefc0f0000 - 0x000007fefc137000 	C:\Windows\system32\rsaenh.dll
+0x000007fefca00000 - 0x000007fefca0f000 	C:\Windows\system32\CRYPTBASE.dll
+0x0000000003c30000 - 0x0000000003c3a000 	C:\Program Files\CellProfiler\numpy.lib._compiled_base.pyd
+0x0000000004440000 - 0x0000000005004000 	C:\Program Files\CellProfiler\numpy.linalg.lapack_lite.pyd
+0x0000000005010000 - 0x000000000721d000 	C:\Program Files\CellProfiler\numpy.linalg._umath_linalg.pyd
+0x0000000007220000 - 0x0000000007234000 	C:\Program Files\CellProfiler\numpy.fft.fftpack_lite.pyd
+0x0000000007240000 - 0x00000000072c1000 	C:\Program Files\CellProfiler\numpy.random.mtrand.pyd
+0x000000001d1a0000 - 0x000000001d1bf000 	C:\Program Files\CellProfiler\_ctypes.pyd
+0x000007fefd5b0000 - 0x000007fefd7ac000 	C:\Windows\system32\ole32.dll
+0x000007fefd040000 - 0x000007fefd11a000 	C:\Windows\system32\OLEAUT32.dll
+0x00000000072e0000 - 0x00000000072ec000 	C:\Program Files\CellProfiler\h5py.utils.pyd
+0x00000000072f0000 - 0x0000000007302000 	C:\Program Files\CellProfiler\h5py.h5.pyd
+0x0000000007310000 - 0x0000000007327000 	C:\Program Files\CellProfiler\h5py.h5a.pyd
+0x0000000007330000 - 0x0000000007346000 	C:\Program Files\CellProfiler\h5py.h5s.pyd
+0x0000000007350000 - 0x0000000007379000 	C:\Program Files\CellProfiler\h5py.h5p.pyd
+0x0000000007380000 - 0x000000000738c000 	C:\Program Files\CellProfiler\h5py.h5ac.pyd
+0x0000000007390000 - 0x000000000739c000 	C:\Program Files\CellProfiler\h5py._proxy.pyd
+0x00000000073a0000 - 0x00000000073b5000 	C:\Program Files\CellProfiler\h5py.h5d.pyd
+0x00000000073c0000 - 0x00000000073cf000 	C:\Program Files\CellProfiler\h5py.h5ds.pyd
+0x00000000073d0000 - 0x00000000073e6000 	C:\Program Files\CellProfiler\h5py.h5f.pyd
+0x00000000073f0000 - 0x0000000007409000 	C:\Program Files\CellProfiler\h5py.h5g.pyd
+0x0000000007410000 - 0x000000000741d000 	C:\Program Files\CellProfiler\h5py.h5i.pyd
+0x0000000007420000 - 0x0000000007427000 	C:\Program Files\CellProfiler\h5py.h5fd.pyd
+0x0000000007430000 - 0x000000000743b000 	C:\Program Files\CellProfiler\h5py.h5z.pyd
+0x0000000007440000 - 0x0000000007455000 	C:\Program Files\CellProfiler\h5py.h5o.pyd
+0x0000000007460000 - 0x0000000007472000 	C:\Program Files\CellProfiler\h5py.h5l.pyd
+0x0000000007480000 - 0x000000000748f000 	C:\Program Files\CellProfiler\_socket.pyd
+0x000007fefeab0000 - 0x000007fefeafd000 	C:\Windows\system32\WS2_32.dll
+0x000007fefef20000 - 0x000007fefef28000 	C:\Windows\system32\NSI.dll
+0x0000000007610000 - 0x0000000007835000 	C:\Program Files\CellProfiler\_ssl.pyd
+0x000007fefcc30000 - 0x000007fefcd9d000 	C:\Windows\system32\CRYPT32.dll
+0x000007fefcc10000 - 0x000007fefcc1f000 	C:\Windows\system32\MSASN1.dll
+0x000000001d110000 - 0x000000001d116000 	C:\Program Files\CellProfiler\select.pyd
+0x0000000007550000 - 0x000000000755f000 	C:\Program Files\CellProfiler\zmq.backend.cython.constants.pyd
+0x0000000007560000 - 0x0000000007567000 	C:\Program Files\CellProfiler\zmq.backend.cython.error.pyd
+0x0000000007840000 - 0x00000000078ee000 	C:\Program Files\CellProfiler\libzmq.pyd
+0x00000000078f0000 - 0x0000000007960000 	C:\Program Files\CellProfiler\libsodium.pyd
+0x0000000072540000 - 0x0000000072613000 	C:\Windows\WinSxS\amd64_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_08e61857a83bc251\MSVCP90.dll
+0x000007fef9cb0000 - 0x000007fef9cd7000 	C:\Windows\system32\IPHLPAPI.DLL
+0x000007fef9b80000 - 0x000007fef9b8b000 	C:\Windows\system32\WINNSI.DLL
+0x000007fefa400000 - 0x000007fefa43b000 	C:\Windows\system32\WINMM.dll
+0x0000000007570000 - 0x0000000007581000 	C:\Program Files\CellProfiler\zmq.backend.cython.message.pyd
+0x0000000007960000 - 0x000000000796d000 	C:\Program Files\CellProfiler\zmq.backend.cython.context.pyd
+0x0000000007970000 - 0x000000000798a000 	C:\Program Files\CellProfiler\zmq.backend.cython.socket.pyd
+0x0000000007990000 - 0x000000000799b000 	C:\Program Files\CellProfiler\zmq.backend.cython.utils.pyd
+0x00000000079a0000 - 0x00000000079ad000 	C:\Program Files\CellProfiler\zmq.backend.cython._poll.pyd
+0x00000000079b0000 - 0x00000000079b7000 	C:\Program Files\CellProfiler\zmq.backend.cython._version.pyd
+0x00000000079c0000 - 0x00000000079cc000 	C:\Program Files\CellProfiler\zmq.backend.cython._device.pyd
+0x00000000079d0000 - 0x00000000079db000 	C:\Program Files\CellProfiler\_multiprocessing.pyd
+0x00000000089b0000 - 0x0000000008b3d000 	C:\Program Files\CellProfiler\scipy.special._ufuncs.pyd
+0x000007feed6c0000 - 0x000007feed847000 	C:\Program Files\CellProfiler\libifcoremd.dll
+0x000007feebab0000 - 0x000007feebdfb000 	C:\Program Files\CellProfiler\libmmd.dll
+0x000007fefd4b0000 - 0x000007fefd4c9000 	C:\Windows\system32\imagehlp.dll
+0x0000000008c50000 - 0x0000000008c67000 	C:\Program Files\CellProfiler\scipy.special._ufuncs_cxx.pyd
+0x0000000008ea0000 - 0x0000000008f51000 	C:\Program Files\CellProfiler\scipy.special.specfun.pyd
+0x0000000008f60000 - 0x000000000a77c000 	C:\Program Files\CellProfiler\scipy.linalg._fblas.pyd
+0x000000000a780000 - 0x000000000ce43000 	C:\Program Files\CellProfiler\scipy.linalg._flapack.pyd
+0x000000000ce50000 - 0x000000000e022000 	C:\Program Files\CellProfiler\scipy.linalg._flinalg.pyd
+0x0000000008c70000 - 0x0000000008c9e000 	C:\Program Files\CellProfiler\scipy.linalg._solve_toeplitz.pyd
+0x0000000008dd0000 - 0x0000000008e19000 	C:\Program Files\CellProfiler\scipy.linalg._decomp_update.pyd
+0x000000000e030000 - 0x0000000010275000 	C:\Program Files\CellProfiler\scipy.linalg.cython_blas.pyd
+0x0000000010280000 - 0x000000001300a000 	C:\Program Files\CellProfiler\scipy.linalg.cython_lapack.pyd
+0x0000000013010000 - 0x0000000013086000 	C:\Program Files\CellProfiler\scipy.special._ellip_harm_2.pyd
+0x0000000013090000 - 0x0000000013832000 	C:\Program Files\CellProfiler\scipy.integrate._odepack.pyd
+0x0000000013840000 - 0x00000000138a0000 	C:\Program Files\CellProfiler\scipy.integrate._quadpack.pyd
+0x00000000138a0000 - 0x0000000014646000 	C:\Program Files\CellProfiler\scipy.integrate.vode.pyd
+0x0000000008ca0000 - 0x0000000008cb3000 	C:\Program Files\CellProfiler\scipy.integrate._dop.pyd
+0x0000000014650000 - 0x0000000014df5000 	C:\Program Files\CellProfiler\scipy.integrate.lsoda.pyd
+0x0000000014e00000 - 0x0000000014f42000 	C:\Program Files\CellProfiler\PIL._imaging.pyd
+0x0000000014f50000 - 0x00000000151c8000 	C:\Program Files\CellProfiler\scipy.sparse._sparsetools.pyd
+0x00000000151d0000 - 0x0000000015225000 	C:\Program Files\CellProfiler\scipy.sparse._csparsetools.pyd
+0x0000000015230000 - 0x000000001525b000 	C:\Program Files\CellProfiler\scipy.sparse.csgraph._shortest_path.pyd
+0x0000000015260000 - 0x000000001527d000 	C:\Program Files\CellProfiler\scipy.sparse.csgraph._tools.pyd
+0x0000000015280000 - 0x000000001529e000 	C:\Program Files\CellProfiler\scipy.sparse.csgraph._traversal.pyd
+0x00000000152a0000 - 0x00000000152b2000 	C:\Program Files\CellProfiler\scipy.sparse.csgraph._min_spanning_tree.pyd
+0x00000000152c0000 - 0x00000000152f7000 	C:\Program Files\CellProfiler\scipy.sparse.csgraph._reordering.pyd
+0x0000000015300000 - 0x000000001530c000 	C:\Program Files\CellProfiler\scipy.io.matlab.mio_utils.pyd
+0x0000000015310000 - 0x0000000015333000 	C:\Program Files\CellProfiler\scipy.io.matlab.mio5_utils.pyd
+0x0000000015340000 - 0x0000000015352000 	C:\Program Files\CellProfiler\scipy.io.matlab.streams.pyd
+0x0000000015360000 - 0x00000000153a5000 	C:\Program Files\CellProfiler\javabridge._javabridge.pyd
+0x0000000067de0000 - 0x000000006867b000 	C:\Program Files\Java\jre1.8.0_121\bin\server\jvm.dll
+0x000007fef9540000 - 0x000007fef9549000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefbcd0000 - 0x000007fefbcdc000 	C:\Windows\system32\VERSION.dll
+0x00000000770e0000 - 0x00000000770e7000 	C:\Windows\system32\PSAPI.DLL
+0x0000000071fc0000 - 0x0000000072092000 	C:\Windows\system32\MSVCR100.dll
+0x000007fefc390000 - 0x000007fefc3e5000 	C:\Windows\system32\mswsock.dll
+0x000007fefbda0000 - 0x000007fefbda7000 	C:\Windows\System32\wshtcpip.dll
+0x00000000153c0000 - 0x00000000153ec000 	C:\Program Files\CellProfiler\_elementtree.pyd
+0x0000000015500000 - 0x000000001552c000 	C:\Program Files\CellProfiler\pyexpat.pyd
+0x0000000072c60000 - 0x0000000072c6f000 	C:\Program Files\Java\jre1.8.0_121\bin\verify.dll
+0x0000000072c30000 - 0x0000000072c59000 	C:\Program Files\Java\jre1.8.0_121\bin\java.dll
+0x0000000072c00000 - 0x0000000072c23000 	C:\Program Files\Java\jre1.8.0_121\bin\instrument.dll
+0x0000000071fa0000 - 0x0000000071fb6000 	C:\Program Files\Java\jre1.8.0_121\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dloci.bioformats.loaded=true -Djava.util.prefs.PreferencesFactory=org.cellprofiler.headlesspreferences.HeadlessPreferencesFactory -javaagent:C:\Program Files\CellProfiler\.\prokaryote\prokaryote.jar=init -Djava.awt.headless=true -Xmx512m 
+java_command: <unknown>
+java_class_path (initial): C:\Program Files\CellProfiler\javabridge\jars\rhino-1.7R4.jar;C:\Program Files\CellProfiler\javabridge\jars\runnablequeue.jar;C:\Program Files\CellProfiler\javabridge\jars\cpython.jar;C:\Program Files\CellProfiler\.\prokaryote\prokaryote.jar;C:\Program Files\CellProfiler\.\prokaryote\prokaryote.jar
+Launcher Type: generic
+
+Environment Variables:
+PATH=C:\Program Files\CellProfiler\PyQt4;C:\Program Files\CellProfiler\PyQt4;C:\Program Files\CellProfiler\numpy\core;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin\;C:\Anaconda3;C:\Anaconda3\Scripts;C:\Program Files\MATLAB\R2016b\runtime\win64;C:\Program Files\MATLAB\R2016b\bin;C:\Program Files\Java\jre1.8.0_121\bin\server;C:\Program Files\Java\jre1.8.0_121\bin;C:\Program Files\Java\jre1.8.0_121\bin\server;C:\Program Files\Java\jre1.8.0_121\bin;C:\Program Files\Java\jre1.8.0_121\bin\server;C:\Program Files\Java\jre1.8.0_121\bin;C:\Program Files\Java\jre1.8.0_121\bin\server;C:\Program Files\Java\jre1.8.0_121\bin
+USERNAME=elaran
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 23 Stepping 10, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 (6.1.7601.23796)
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, tsc
+
+Memory: 4k page, physical 4192760k(69412k free), swap 6238900k(5024k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.121-b13) for windows-amd64 JRE (1.8.0_121-b13), built on Dec 12 2016 18:21:36 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Tue Jun 13 12:46:29 2017
+elapsed time: 223 seconds (0d 0h 3m 43s)
+
