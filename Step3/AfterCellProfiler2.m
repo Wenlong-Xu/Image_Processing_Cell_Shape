@@ -13,30 +13,30 @@
 % we need to separate these into individual cells. 
 %  ------------------------------------------------------------------------
 %% First, read in all images we are going to use: 
-WorkingDir = 'C:\temSpace\Spring2018\2\SAOS2_GAA_C1.TIFF\Output_SAOS2_GAA_C1\SAOS2_GAA_C1'; 
-SpecStr = 'SAOS2_GAA_C1_*'; 
-Output_Folder = 'Step3_WX'; 
-AllSlides = dir(fullfile(WorkingDir, SpecStr)); 
+WorkingDir = 'H:\BackUp2018_01_07\PC_Cdrive\Tempspace\Programs\Data\CancerDrug2016Oct18\Matlab_101520\DUNN_TIFF\DUNN_PP2_C_GDA\'; 
+SpecStr = 'DUNN_PP2_C_GDA_*'; 
+Output_Folder = 'DUNN_PP2_C_SepCells\'; 
+AllSlides = dir([WorkingDir, SpecStr]); 
 NumSlides = length(AllSlides); 
 CellCount = 0; 
-for ii = 1:NumSlides
+for ii = 1:1%NumSlides??????????
     SlideName = AllSlides(ii).name; 
 %     SlideName = 'DUNN_GAA_9'; 
     fprintf(['We are now working on ', SlideName, '.\n']); 
     % NOTE: Here we are assuming the SlideName (the subfolder name  
     % containing images to be analyzed) and the image tag are same. 
 %     [FileName, PathName, ~] = uigetfile('.tif', 'Select Labled Cells from CellProfiler!'); 
-    LabledCells  = imread(fullfile(WorkingDir, SlideName, [SlideName, '_NucIntActinImage.tif'])); 
-    LabledNuclei = imread(fullfile(WorkingDir, SlideName, [SlideName, '_NucIntNucImage.tif'])); 
-    CellOutlines = imread(fullfile(WorkingDir, SlideName, [SlideName, '_NucInt_ActinOutlines.bmp'])); 
+    LabledCells = imread([WorkingDir, SlideName, '\', SlideName, '_NucIntActinImage.tif']); 
+    LabledNuclei = imread([WorkingDir, SlideName, '\', SlideName, '_NucIntNucImage.tif']); 
+    CellOutlines = imread([WorkingDir, SlideName, '\', SlideName, '_NucInt_ActinOutlines.bmp']); 
     Num_Cells = max(max(LabledCells)); 
     Num_Nuc = max(max(LabledNuclei)); 
     if Num_Cells < 255 % This means we do not need uint 16 to save the cells 
         LabledCells = uint8(LabledCells); 
         LabledNuclei = uint8(LabledNuclei); 
     end
-    NucGray   = imread(fullfile(WorkingDir, SlideName, [SlideName, '_NucInt.tif'])); 
-    ActinGray = imread(fullfile(WorkingDir, SlideName, [SlideName, '_ActinInt.tif'])); 
+    NucGray = imread([WorkingDir, SlideName, '\', SlideName, '_NucInt.tif']); 
+    ActinGray = imread([WorkingDir, SlideName, '\', SlideName, '_ActinInt.tif']); 
     
     if strcmp(class(NucGray), 'uint16') 
         NucGray = uint8(255.*double(NucGray)./max(max(double(NucGray)))); 
@@ -46,9 +46,9 @@ for ii = 1:NumSlides
     %  Creat a folder for the separated cells 
 %     Loc1 = find(PathName == '\'); 
 %     PathName2 = PathName(1:Loc1(end-1)); 
-    IfMakeDir = dir(fullfile(WorkingDir, Output_Folder)); 
+    IfMakeDir = dir([WorkingDir, Output_Folder]); 
     if isempty(IfMakeDir)
-        mkdir(fullfile(WorkingDir, Output_Folder)); 
+        mkdir([WorkingDir, Output_Folder]); 
     end
     SaveClass = class(NucGray); 
     % ---------------------------------------------------------------------
@@ -114,34 +114,48 @@ for ii = 1:NumSlides
     %  Cells touching the image borders are not directly removed from the 
     %  maskes. So they are still visible in the visual inspection. In the
     %  separation part, they are avoided from the cell indexes. 
+%     FilteredNuc=LabledNuclei;
+%     FilteredAcin=LabledCells;
+    
     [FilteredNuc, FilteredActin] = ManualProcessingV3... 
     (FilteredActin, FilteredNuc, ActinGray, NucGray, CellOutlines); 
     FinalCellIdx = unique(FilteredActin)'; 
     FinalCellIdx(FinalCellIdx == 0) = []; 
+    %FinalCellIdx=1%???????????????
     % ---------------------------------------------------------------------
     %% Separate cells and save them individually 
     for jj = FinalCellIdx 
         [ActinMask, ActinInt, flagActin] = PickAndApplyMask(FilteredActin, ActinGray, jj, SaveClass); 
         [NucMask, NucInt, flagNuc] = PickAndApplyMask(FilteredNuc, NucGray, jj, SaveClass); 
+        
+        This_Actin = FilteredAcin == jj;
+        Prop_Actin = regionprops(This_Actin, 'Centroid'); 
+        This_Nuc   = FilteredNuc   == jj;
+        Prop_Nuc   = regionprops(This_Nuc,   'Centroid'); 
+        offset = Prop_Nuc(1).Centroid - Prop_Actin(1).Centroid; 
+        [Nuc_Sep_Mask, Nuc_Sep_Int, flagNuc] = PickAndApplyMask_V2(FilteredNuc, NucGray, jj, class(NucGray), offset); 
         if flagActin && flagNuc
             % save these six sub-images into according file folders. 
             CellStr = [SlideName, '_Cell', num2str(jj)]; 
-            IfMakeDir2 = dir(fullfile(WorkingDir, Output_Folder, CellStr)); 
+            IfMakeDir2 = dir([WorkingDir, Output_Folder, '\', CellStr]); 
             if isempty(IfMakeDir2)
-                mkdir(fullfile(WorkingDir, Output_Folder, CellStr))
+                mkdir([WorkingDir, Output_Folder, '\', CellStr])
             end
 
-            imwrite(ActinMask, fullfile(WorkingDir, Output_Folder, CellStr, [CellStr, '_ActinMask.bmp'])); 
-            imwrite(NucMask,   fullfile(WorkingDir, Output_Folder, CellStr, [CellStr, '_NucMask.bmp'])); 
-
-            imwrite(ActinInt,  fullfile(WorkingDir, Output_Folder, CellStr, [CellStr, '_ActinInt.tif'])); 
-            imwrite(NucInt,    fullfile(WorkingDir, Output_Folder, CellStr, [CellStr, '_NucInt.tif'])); 
+            imwrite(ActinMask, [WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_ActinMask.bmp']); 
+            imwrite(NucMask, [WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_NucMask.bmp']); 
+            
+            imwrite(ActinInt, [WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_ActinInt.tif']); 
+            imwrite(NucInt, [WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_NucInt.tif']); 
+            imwrite(Nuc_Sep_Mask, [WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_NucMask2.bmp']); 
         else 
             FinalCellIdx(FinalCellIdx == jj) = []; 
         end
+         
+            
     end
     %% Save location information of all cells 
-    fout1 = fopen(fullfile(WorkingDir, Output_Folder, [SlideName, '_loc_info.txt']), 'w'); 
+    fout1 = fopen([WorkingDir, Output_Folder, '\', SlideName, '_loc_info.txt'], 'w'); 
     fprintf(fout1, 'CellIdx\t Location\n'); 
     % We have five possible locations for all cells: 
     % border, isolated, edge, inside, missed
@@ -197,7 +211,7 @@ for ii = 1:NumSlides
         
         if savemode == 1 
             CellStr = [SlideName, '_Cell', num2str(zz)]; 
-            fout2 = fopen(fullfile(WorkingDir, Output_Folder, CellStr, [CellStr, '_loc_info.txt']), 'w'); 
+            fout2 = fopen([WorkingDir, Output_Folder, '\', CellStr, '\', CellStr, '_loc_info.txt'], 'w'); 
             fprintf(fout2, 'NeighborIdx\t Percentage\n'); 
             for jj = 1:Num_Nhood 
                 fprintf(fout2, '%d\t %f\n', NhoodCellIdx(jj), Percentage(jj)); 
